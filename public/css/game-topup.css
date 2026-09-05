@@ -1,0 +1,2188 @@
+/**
+ * RosTop - Dedicated Game Top-Up & VertexBazaar-Style UI System
+ * Matches VertexBazaar 3-Step Recharge Flow and Regional Editions Modal
+ */
+
+/* ==========================================================================
+   1. Theme Variables & Brand Tokens
+   ========================================================================== */
+:root {
+  --vb-orange: #1FA37E; /* brand emerald (replaces red/coral across all pages) */
+  --vb-orange-dark: #128A68;
+  --vb-orange-glow: rgba(31, 163, 126, 0.25);
+  --vb-emerald: #1FA37E;
+  --vb-dark-bg: #0A1411;
+  --vb-card-bg: #13231D;
+  --vb-card-border: #1F362D;
+  --vb-card-hover: rgba(31, 163, 126, 0.15);
+  --vb-pill-bg: rgba(255, 255, 255, 0.05);
+  --hp-card-bg: #13231D;
+  --hp-card-border: #1F362D;
+  --hp-surface: #0A1411;
+  --hp-btn-bg: rgba(31, 163, 126, 0.12);
+  --hp-btn-color: #1FA37E;
+  --hp-btn-border: rgba(31, 163, 126, 0.3);
+  --cta-fg: #0A1411;
+}
+
+[data-theme="light"] {
+  --vb-dark-bg: #F8FAF9;
+  --vb-card-bg: #FFFFFF;
+  --vb-card-border: #D8E2DE;
+  --vb-card-hover: rgba(15, 107, 76, 0.08);
+  --vb-pill-bg: rgba(19, 34, 28, 0.05);
+  --hp-card-bg: #FFFFFF;
+  --hp-card-border: #D8E2DE;
+  --hp-surface: #F0F6F3;
+  --hp-btn-bg: rgba(31, 163, 126, 0.1);
+  --hp-btn-color: #0E6B52;
+  --hp-btn-border: rgba(31, 163, 126, 0.35);
+  --cta-fg: #13221C;
+}
+
+/* ==========================================================================
+   2. Product Page Banner & Header
+   ========================================================================== */
+.pp-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 4rem;
+}
+
+/* Breadcrumbs & Quick Category Navigation */
+.pp-top-nav-bar {
+  margin-bottom: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.pp-breadcrumb {
+  width: 100%;
+}
+
+.pp-breadcrumb-track {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 1px;
+}
+
+.pp-breadcrumb-track::-webkit-scrollbar {
+  display: none;
+}
+
+.pp-bc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: var(--vb-pill-bg);
+  border: 1px solid var(--vb-card-border);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.pp-bc-link:hover {
+  color: var(--vb-orange);
+  border-color: rgba(255, 140, 0, 0.4);
+  background: rgba(255, 140, 0, 0.08);
+}
+
+.pp-bc-link .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.pp-bc-sep {
+  width: 12px;
+  height: 12px;
+  color: var(--text-muted);
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+.pp-bc-current {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-main);
+  padding: 4px 6px;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Quick Categories / Games Switcher Strip */
+.pp-quick-cats-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+}
+
+.pp-quick-cats-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.pp-quick-cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-main);
+  background: rgba(255, 140, 0, 0.12);
+  border: 1px solid rgba(255, 140, 0, 0.3);
+  border-radius: 20px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+
+.pp-quick-cat-btn:hover {
+  background: var(--vb-orange);
+  color: #000;
+}
+
+.pp-quick-cat-btn .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.pp-quick-game-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--vb-pill-bg);
+  border: 1px solid var(--vb-card-border);
+  border-radius: 20px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+
+.pp-quick-game-chip:hover {
+  color: var(--text-main);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pp-quick-game-chip.active {
+  color: #FFFFFF;
+  background: rgba(255, 140, 0, 0.18);
+  border-color: var(--vb-orange);
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.25);
+}
+
+[data-theme="light"] .pp-quick-game-chip.active {
+  color: #0F172A;
+  background: rgba(255, 140, 0, 0.15);
+}
+
+.pp-qg-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.pp-quick-game-chip .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.pp-meta-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.pp-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(255, 140, 0, 0.14);
+  border: 1px solid rgba(255, 140, 0, 0.32);
+  color: var(--vb-orange);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.pp-cat-pill .icon {
+  width: 11px;
+  height: 11px;
+}
+
+.pp-badge-rating {
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #2BBC92;
+  font-weight: 700;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+.pp-ed-flag-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 140, 0, 0.12);
+  border: 1px solid rgba(255, 140, 0, 0.28);
+  font-size: 1.1rem;
+  font-family: "Twemoji Country Flags", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+  flex-shrink: 0;
+  font-weight: 800;
+  color: var(--vb-orange);
+}
+
+.pp-banner {
+  position: relative;
+  min-height: 105px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+  background-color: var(--vb-dark-bg);
+  border: 1px solid var(--vb-card-border);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+}
+
+.pp-banner-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: blur(1px);
+  transform: scale(1.03);
+}
+
+.pp-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.8) 60%, rgba(11, 15, 25, 0.4) 100%);
+}
+
+[data-theme="light"] .pp-banner-overlay {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 65%, rgba(255, 255, 255, 0.4) 100%);
+}
+
+.pp-banner-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.pp-avatar {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--vb-orange);
+  box-shadow: 0 0 12px var(--vb-orange-glow);
+  background: var(--vb-card-bg);
+}
+
+.pp-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pp-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pp-title {
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  margin: 0 0 2px;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="light"] .pp-title {
+  color: #0F172A;
+}
+
+.pp-cat-subtitle {
+  color: var(--vb-orange);
+  font-size: 0.68rem;
+  font-weight: 800;
+  margin: 0 0 5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pp-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.pp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.pp-badge-orange {
+  background: rgba(255, 140, 0, 0.12);
+  color: var(--vb-orange);
+  border: 1px solid rgba(255, 140, 0, 0.28);
+}
+
+.pp-badge-neutral {
+  background: var(--vb-pill-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--vb-card-border);
+}
+
+.pp-region-flag {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   3. Promotional Notice Box (Alert Callout)
+   ========================================================================== */
+.pp-notice-alert {
+  margin-bottom: 1.25rem;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 140, 0, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.24);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--vb-orange);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.pp-notice-alert .icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   4. Three-Step Layout & Step Headers
+   ========================================================================== */
+.pp-step-block {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.15rem;
+  border-radius: 14px;
+  background: var(--vb-card-bg);
+  border: 1px solid var(--vb-card-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.pp-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.pp-step-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pp-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--vb-orange);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.74rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.pp-step-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.pp-step-link {
+  font-size: 0.74rem;
+  color: var(--vb-orange);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.pp-step-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. Step 1: Package Grid
+   ========================================================================== */
+.var-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .var-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pp-var-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1.5px solid var(--vb-card-border);
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  overflow: hidden;
+  gap: 3px;
+}
+
+[data-theme="light"] .pp-var-card {
+  background: #F8FAFC;
+}
+
+.pp-var-card:hover {
+  border-color: rgba(255, 140, 0, 0.45);
+  transform: translateY(-2px);
+  background: rgba(255, 140, 0, 0.04);
+}
+
+.pp-var-card.selected {
+  border-color: var(--vb-orange) !important;
+  background: rgba(255, 140, 0, 0.09) !important;
+  box-shadow: 0 0 16px rgba(255, 140, 0, 0.22);
+}
+
+.pp-var-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.pp-var-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pp-var-stock {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--vb-emerald);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.pp-var-stock-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vb-emerald);
+  display: inline-block;
+}
+
+.pp-var-prices {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.pp-var-price-bdt {
+  font-weight: 900;
+  font-size: 0.88rem;
+  color: var(--vb-orange);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.pp-var-price-usdt {
+  color: var(--vb-emerald);
+  font-weight: 600;
+  font-size: 0.66rem;
+  white-space: nowrap;
+}
+
+.pp-var-bonus-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--vb-orange);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   6. Step 2: Account Info & Order Summary Pill
+   ========================================================================== */
+.pp-order-summary-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--vb-card-border);
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+[data-theme="light"] .pp-order-summary-box {
+  background: #F1F5F9;
+}
+
+.pp-summary-text {
+  color: var(--text-muted);
+}
+
+.pp-summary-item {
+  color: var(--vb-orange);
+  font-weight: 800;
+  margin-left: 4px;
+}
+
+.pp-clear-btn {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pp-clear-btn:hover {
+  background: #EF4444;
+  color: #FFFFFF;
+}
+
+.pp-input-group {
+  margin-bottom: 0.9rem;
+}
+
+.pp-input-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+.pp-input-label span.req {
+  color: #EF4444;
+  margin-left: 2px;
+}
+
+.pp-input {
+  width: 100%;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--vb-card-border);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0 14px;
+  font-size: 0.86rem;
+  color: var(--text-main);
+  transition: all 0.2s;
+  outline: none;
+}
+
+[data-theme="light"] .pp-input {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.18);
+}
+
+.pp-input:focus {
+  border-color: var(--vb-orange);
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.18);
+}
+
+.pp-input-tip {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   7. Step 3: Payment Methods List
+   ========================================================================== */
+.pp-payment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pp-payment-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--vb-card-border);
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+[data-theme="light"] .pp-payment-option {
+  background: #F8FAFC;
+}
+
+.pp-payment-option:hover {
+  border-color: rgba(255, 140, 0, 0.4);
+  background: rgba(255, 140, 0, 0.03);
+}
+
+.pp-payment-option.selected {
+  border-color: var(--vb-orange) !important;
+  background: rgba(255, 140, 0, 0.08) !important;
+}
+
+.pp-pay-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pp-pay-radio {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--vb-orange);
+}
+
+.pp-pay-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.pp-pay-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.pp-wallet-info-bar {
+  background: rgba(255, 140, 0, 0.05);
+  border: 1px dashed rgba(255, 140, 0, 0.25);
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   8. Buy Now CTA Button
+   ========================================================================== */
+.pp-buy-now-btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--vb-orange) 0%, var(--vb-orange-dark) 100%);
+  color: #FFFFFF;
+  border: none;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(255, 140, 0, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 1.25rem;
+}
+
+.pp-buy-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 140, 0, 0.5);
+}
+
+.pp-buy-now-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   9. Information Tabs (Description, Guide, Reviews)
+   ========================================================================== */
+.pp-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 4px;
+}
+
+.pp-tab-nav-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--vb-pill-bg);
+  border: 1px solid var(--vb-card-border);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pp-tab-nav-btn:hover {
+  color: var(--text-main);
+  border-color: rgba(255, 140, 0, 0.35);
+}
+
+.pp-tab-nav-btn.active {
+  background: rgba(255, 140, 0, 0.12);
+  color: var(--vb-orange);
+  border-color: var(--vb-orange);
+}
+
+.pp-tab-pane {
+  display: none;
+}
+
+.pp-tab-pane.active {
+  display: block;
+}
+
+/* ==========================================================================
+   10. Subcategory / Regional Editions Modal (Screenshots 4 & 5)
+   ========================================================================== */
+.game-editions-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.game-editions-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.game-editions-dialog {
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  background: #0C1022;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .game-editions-dialog {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+.game-editions-modal.show .game-editions-dialog {
+  transform: scale(1);
+}
+
+.game-editions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--vb-card-border);
+}
+
+.game-editions-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .game-editions-title {
+  color: #0F172A;
+}
+
+.game-editions-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+[data-theme="light"] .game-editions-close {
+  background: rgba(15, 23, 42, 0.06);
+  color: #0F172A;
+}
+
+.game-editions-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+}
+
+.game-editions-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+
+.game-editions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 576px) {
+  .game-editions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .game-editions-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.game-edition-card {
+  position: relative;
+  border-radius: 12px;
+  background: #151A2E;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+[data-theme="light"] .game-edition-card {
+  background: #F8FAFC;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.game-edition-card:hover {
+  border-color: var(--vb-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.game-edition-thumb {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.game-edition-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.game-edition-card:hover .game-edition-thumb img {
+  transform: scale(1.05);
+}
+
+.game-edition-flag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.game-edition-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.85);
+  color: #FFFFFF;
+  font-size: 0.6rem;
+  font-weight: 800;
+  backdrop-filter: blur(4px);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.game-edition-badge.flash {
+  background: rgba(255, 140, 0, 0.9);
+}
+
+.game-edition-info {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.game-edition-name {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="light"] .game-edition-name {
+  color: #0F172A;
+}
+
+.game-edition-meta {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.game-edition-meta .rating {
+  color: var(--accent-cta);
+  font-weight: 700;
+}
+
+.game-editions-footer {
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid var(--vb-card-border);
+  display: flex;
+  justify-content: center;
+}
+
+.game-editions-all-btn {
+  padding: 8px 24px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid var(--vb-orange);
+  color: var(--vb-orange);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.game-editions-all-btn:hover {
+  background: var(--vb-orange);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   11. Homepage & Top-Up Game Card Refinement (SEAGM / Vertex Clean Style)
+   ========================================================================== */
+.hp-mini-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--hp-card-bg);
+  border: 1px solid var(--hp-card-border, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  height: 100%;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="light"] .hp-mini-card {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.09);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.hp-mini-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 140, 0, 0.5);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .hp-mini-card:hover {
+  border-color: rgba(255, 140, 0, 0.6);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.hp-mini-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  max-height: 135px;
+  background: var(--hp-surface);
+  overflow: hidden;
+}
+
+[data-theme="light"] .hp-mini-thumb {
+  background: #F1F5F9;
+}
+
+.hp-mini-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+/* Square banner artwork (game top-up images are 1:1) — show full art, no crop */
+.hp-mini-thumb.hp-thumb-square {
+  aspect-ratio: 1 / 1;
+  max-height: none;
+}
+
+@media (max-width: 576px) {
+  .hp-mini-thumb.hp-thumb-square {
+    aspect-ratio: 1 / 1;
+    max-height: none;
+  }
+}
+
+.hp-mini-card:hover .hp-mini-thumb img {
+  transform: scale(1.05);
+}
+
+.hp-mini-flag-chip {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 2px 6px;
+  border-radius: 9999px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+[data-theme="light"] .hp-mini-flag-chip {
+  background: rgba(255, 255, 255, 0.94);
+  color: #0F172A;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.hp-mini-badge {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem !important;
+  left: auto !important;
+  z-index: 2;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: rgba(16, 185, 129, 0.92);
+  padding: 0.22rem 0.45rem;
+  border-radius: 9999px;
+  line-height: 1;
+}
+
+.hp-mini-badge.hot {
+  background: rgba(255, 140, 0, 0.92);
+}
+
+/* ====== Compact Marketplace Mini-Cards (related & home sections) ====== */
+.hpm-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hpm-tile {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand, var(--vb-emerald, #1FA37E));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hpm-tile > .icon,
+.hpm-tile > svg {
+  width: 27px;
+  height: 27px;
+  color: #FFFFFF;
+}
+
+/* Official SVG logo / very dark brands render in a white studio tile */
+.hpm-tile.hpm-tile-logo,
+.hpm-tile.hpm-tile-light {
+  background: linear-gradient(145deg, #FFFFFF 0%, #E4EAE8 100%);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.35), inset 0 -8px 12px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .hpm-tile.hpm-tile-logo,
+[data-theme="light"] .hpm-tile.hpm-tile-light {
+  background: linear-gradient(145deg, #FFFFFF 0%, #EFF3F2 100%);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.hpm-tile.hpm-tile-light > .icon,
+.hpm-tile.hpm-tile-light > svg {
+  color: var(--brand);
+}
+
+.hpm-logo-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+}
+
+.hpm-card:hover .hpm-tile { transform: scale(1.07); }
+
+.hpm-card.is-out-of-stock .hpm-tile {
+  filter: grayscale(0.9);
+  opacity: 0.55;
+}
+
+.hpm-price-old {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-decoration: line-through;
+  margin-left: 2px;
+}
+
+.hpm-btn-out {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  background: var(--hp-surface, rgba(255, 255, 255, 0.06));
+  color: var(--text-dim);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: not-allowed;
+}
+
+.hpm-btn-out .icon,
+.hpm-btn-out svg { width: 12px; height: 12px; }
+
+.hp-mini-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.65rem 0.75rem 0.75rem;
+  flex: 1;
+}
+
+.hp-mini-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-main, #F1F5F9);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.15em;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="light"] .hp-mini-title {
+  color: #0F172A;
+}
+
+.hp-mini-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  margin-top: 1px;
+}
+
+.hp-mini-rating-row .star-rating {
+  color: var(--accent-cta);
+  font-weight: 800;
+}
+
+.hp-mini-rating-row .sold-count {
+  color: var(--text-dim, #94A3B8);
+}
+
+[data-theme="light"] .hp-mini-rating-row .sold-count {
+  color: #64748B;
+}
+
+.hp-mini-priceline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-top: auto;
+  padding-top: 0.35rem;
+}
+
+.hp-mini-from {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--text-dim, #94A3B8);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+[data-theme="light"] .hp-mini-from {
+  color: #64748B;
+}
+
+.hp-mini-price {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--vb-orange);
+}
+
+[data-theme="light"] .hp-mini-price {
+  color: #0E6B52;
+}
+
+.hp-mini-actions-row {
+  margin-top: 0.4rem;
+  width: 100%;
+}
+
+.hp-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  height: 34px;
+  width: 100%;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--hp-btn-color, #CBD5E1);
+  background: var(--hp-btn-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--hp-btn-border, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+[data-theme="light"] .hp-mini-btn {
+  color: #0E6B52;
+  background: rgba(255, 140, 0, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.25);
+}
+
+.hp-mini-card:hover .hp-mini-btn {
+  color: var(--cta-fg) !important;
+  background: linear-gradient(135deg, var(--vb-orange), var(--vb-orange-dark)) !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 10px rgba(255, 140, 0, 0.3);
+}
+
+/* Trust features badge */
+.pp-trust-badge {
+  background: var(--vb-pill-bg);
+  border: 1px solid var(--vb-card-border);
+  padding: 5px 11px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+[data-theme="light"] .pp-trust-badge {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.10);
+  color: #1E293B;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+}
+
+/* ==========================================================================
+   12. Dedicated Game Edition Picker Trigger & Popup Modal (SEAGM / Vertex Style)
+   ========================================================================== */
+.pp-edition-select-wrap {
+  margin-bottom: 1.1rem;
+}
+
+.pp-edition-select-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-dim, #94A3B8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.pp-edition-selected {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 10px 14px;
+  background: var(--vb-card-bg);
+  border: 1.5px solid rgba(255, 140, 0, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text-main, #F1F5F9);
+}
+
+[data-theme="light"] .pp-edition-selected {
+  background: #FFFFFF;
+  border-color: rgba(255, 140, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  color: #0F172A;
+}
+
+.pp-edition-selected:hover {
+  border-color: var(--vb-orange);
+  background: rgba(255, 140, 0, 0.04);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(255, 140, 0, 0.18);
+}
+
+.pp-edition-selected:focus-visible {
+  outline: 2px solid var(--vb-orange);
+  outline-offset: 2px;
+}
+
+.pp-ed-sel-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.pp-ed-flag {
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pp-ed-sel-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pp-ed-name {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-main, #F1F5F9);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="light"] .pp-ed-name {
+  color: #0F172A;
+}
+
+.pp-ed-sel-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: var(--text-dim, #94A3B8);
+}
+
+.pp-ed-chip {
+  font-size: 0.60rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: rgba(255, 140, 0, 0.18);
+  color: var(--vb-orange);
+  border: 1px solid rgba(255, 140, 0, 0.35);
+  line-height: 1.2;
+}
+
+.pp-ed-sel-speed {
+  font-size: 0.68rem;
+  color: var(--vb-emerald);
+  font-weight: 600;
+}
+
+.pp-ed-chevron {
+  color: var(--text-dim, #94A3B8);
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pp-edition-selected[aria-expanded="true"] .pp-ed-chevron {
+  transform: rotate(180deg);
+  color: var(--vb-orange);
+}
+
+/* ==========================================================================
+   Edition Picker Modal (Bottom Sheet on Mobile, Centered on Desktop)
+   ========================================================================== */
+.pp-edition-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pp-edition-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pp-edition-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.pp-edition-dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  margin: auto;
+  background: #0C1022;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .pp-edition-dialog {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.pp-edition-modal.show .pp-edition-dialog {
+  transform: scale(1);
+}
+
+.pp-edition-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--vb-card-border, rgba(255, 255, 255, 0.08));
+}
+
+.pp-edition-modal-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="light"] .pp-edition-modal-title {
+  color: #0F172A;
+}
+
+.pp-edition-modal-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+[data-theme="light"] .pp-edition-modal-close {
+  background: rgba(15, 23, 42, 0.06);
+  color: #0F172A;
+}
+
+.pp-edition-modal-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+}
+
+.pp-edition-modal-list {
+  list-style: none;
+  margin: 0;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+.pp-edition-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main, #F1F5F9);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .pp-edition-option {
+  background: #F8FAFC;
+  border-color: rgba(15, 23, 42, 0.09);
+  color: #0F172A;
+}
+
+.pp-edition-option:hover {
+  border-color: rgba(255, 140, 0, 0.45);
+  background: rgba(255, 140, 0, 0.04);
+  transform: translateY(-1px);
+}
+
+.pp-edition-option.active {
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.15), rgba(255, 140, 0, 0.05)) !important;
+  border-color: var(--vb-orange) !important;
+  box-shadow: 0 0 12px rgba(255, 140, 0, 0.22);
+}
+
+[data-theme="light"] .pp-edition-option.active {
+  background: rgba(255, 140, 0, 0.09) !important;
+}
+
+.pp-ed-option-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pp-ed-option-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: var(--text-dim, #94A3B8);
+}
+
+.pp-ed-option-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  color: transparent;
+}
+
+[data-theme="light"] .pp-ed-option-check {
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
+.pp-edition-option.active .pp-ed-option-check {
+  background: var(--vb-orange);
+  border-color: var(--vb-orange);
+  color: #FFFFFF;
+}
+
+@media (max-width: 576px) {
+  /* Mobile Bottom Sheet Modal */
+  .pp-edition-modal {
+    align-items: flex-end;
+  }
+
+  .pp-edition-dialog {
+    max-width: 100%;
+    max-height: 82vh;
+    border-radius: 18px 18px 0 0;
+    margin: 0;
+    transform: translateY(24px);
+  }
+
+  .pp-edition-modal.show .pp-edition-dialog {
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   13. Mobile Responsive Refinements (<768px & <576px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .pp-wrap {
+    padding: 0.75rem 14px 6.5rem;
+  }
+
+  /* Prevent row negative gutters from pulling cards outside container */
+  .pp-wrap > .row,
+  .pp-wrap form > .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .pp-wrap > .row > [class*="col-"],
+  .pp-wrap form > .row > [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Header Banner */
+  .pp-banner {
+    min-height: 85px;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  .pp-banner-content {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .pp-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .pp-title {
+    font-size: 0.94rem;
+    line-height: 1.2;
+    margin-bottom: 1px;
+  }
+
+  .pp-cat-subtitle {
+    font-size: 0.62rem;
+    margin-bottom: 3px;
+  }
+
+  .pp-badges-row {
+    gap: 4px;
+  }
+
+  .pp-badge {
+    font-size: 0.64rem;
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+
+  /* Dedicated In-Page Edition Trigger */
+  .pp-edition-select-wrap {
+    margin-bottom: 0.85rem;
+  }
+
+  .pp-edition-select-label {
+    font-size: 0.68rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .pp-edition-selected {
+    min-height: 48px;
+    padding: 8px 12px;
+    border-radius: 12px;
+  }
+
+  .pp-ed-name {
+    font-size: 0.80rem;
+  }
+
+  .pp-ed-sel-meta {
+    font-size: 0.64rem;
+  }
+
+  /* Notice Callout Box */
+  .pp-notice-alert {
+    padding: 8px 10px;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    border-radius: 10px;
+    margin-bottom: 0.85rem;
+    gap: 6px;
+  }
+
+  /* Step Blocks */
+  .pp-step-block {
+    padding: 0.75rem 0.85rem;
+    border-radius: 12px;
+    margin-bottom: 0.85rem;
+  }
+
+  .pp-step-header {
+    margin-bottom: 0.65rem;
+  }
+
+  .pp-step-num {
+    width: 19px;
+    height: 19px;
+    font-size: 0.68rem;
+  }
+
+  .pp-step-title {
+    font-size: 0.85rem;
+  }
+
+  .pp-step-link {
+    font-size: 0.68rem;
+  }
+
+  /* Step 1: Package Grid */
+  .var-grid {
+    gap: 6px;
+  }
+
+  .pp-var-card {
+    padding: 6px 8px;
+    border-radius: 8px;
+  }
+
+  .pp-var-label {
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+
+  .pp-var-stock {
+    font-size: 0.58rem;
+  }
+
+  .pp-var-price-bdt {
+    font-size: 0.80rem;
+  }
+
+  .pp-var-price-usdt {
+    font-size: 0.60rem;
+  }
+
+  .pp-var-bonus-tag {
+    font-size: 0.56rem;
+  }
+
+  /* Step 2: Account Info & Summary Box */
+  .pp-order-summary-box {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+  }
+
+  .pp-input-group {
+    margin-bottom: 0.75rem;
+  }
+
+  .pp-input-label {
+    font-size: 0.72rem;
+    margin-bottom: 3px;
+  }
+
+  .pp-input {
+    height: 38px;
+    font-size: 0.80rem;
+    padding: 0 10px;
+    border-radius: 8px;
+  }
+
+  .pp-input-tip {
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
+  /* Step 3: Payment Options */
+  .pp-payment-option {
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .pp-pay-left {
+    gap: 8px;
+  }
+
+  .pp-pay-radio {
+    width: 15px;
+    height: 15px;
+  }
+
+  .pp-pay-title {
+    font-size: 0.78rem;
+  }
+
+  .pp-pay-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Sticky Summary Box (Stacked below on mobile) */
+  .col-12.col-lg-4 .pp-step-block h3 {
+    font-size: 0.92rem !important;
+    margin-bottom: 0.75rem !important;
+    padding-bottom: 0.45rem !important;
+  }
+
+  #side-selected-price {
+    font-size: 1.25rem !important;
+  }
+
+  .pp-buy-now-btn {
+    height: 42px;
+    font-size: 0.86rem;
+    border-radius: 10px;
+    margin-top: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .pp-wrap {
+    padding: 0.65rem 12px 6.5rem;
+  }
+
+  .pp-bc-link {
+    font-size: 0.70rem;
+    padding: 3px 7px;
+  }
+
+  .pp-bc-current {
+    font-size: 0.70rem;
+    max-width: 140px;
+  }
+
+  .pp-quick-cat-btn {
+    font-size: 0.68rem;
+    padding: 4px 10px;
+  }
+
+  .pp-quick-game-chip {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  /* Game Cards on Mobile */
+  .hp-mini-card {
+    border-radius: 10px;
+  }
+
+  .hp-mini-thumb {
+    aspect-ratio: 16 / 10;
+    max-height: 105px;
+  }
+
+  .hp-mini-body {
+    padding: 0.45rem 0.55rem 0.55rem;
+    gap: 0.2rem;
+  }
+
+  .hp-mini-title {
+    font-size: 0.75rem;
+    line-height: 1.25;
+    min-height: 1.9em;
+  }
+
+  .hp-mini-badge {
+    font-size: 0.52rem;
+    padding: 0.15rem 0.35rem;
+  }
+
+  .hp-mini-flag {
+    font-size: 0.54rem;
+    padding: 1px 4px;
+  }
+
+  .hp-mini-meta {
+    font-size: 0.58rem;
+  }
+
+  .hp-mini-price {
+    font-size: 0.82rem;
+  }
+
+  .hp-mini-price span {
+    font-size: 0.56rem;
+  }
+
+  .hp-mini-btn {
+    height: 28px;
+    font-size: 0.68rem;
+    border-radius: 6px;
+  }
+}
+
+/* ==========================================================================
+   14. Game Top-Up Listing Page Responsive Polish
+   ========================================================================== */
+.pp-listing-container {
+  padding-top: 1.5rem;
+  padding-bottom: 5.5rem;
+}
+
+.pp-listing-hero-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.pp-listing-hero-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 65ch;
+  line-height: 1.55;
+}
+
+.pp-listing-cats {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 1.75rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pp-listing-cats::-webkit-scrollbar {
+  display: none;
+}
+
+.category-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--vb-card-bg);
+  border: 1px solid var(--vb-card-border);
+  border-radius: 30px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.category-filter-pill:hover {
+  color: var(--text-main);
+  border-color: rgba(255, 140, 0, 0.4);
+  background: rgba(255, 140, 0, 0.06);
+}
+
+.category-filter-pill.active {
+  color: var(--cta-fg) !important;
+  background: linear-gradient(135deg, var(--vb-orange), var(--vb-orange-dark)) !important;
+  border-color: var(--vb-orange) !important;
+  box-shadow: 0 2px 14px rgba(255, 140, 0, 0.35);
+}
+
+[data-theme="light"] .category-filter-pill {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #475569;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .category-filter-pill:hover {
+  background: rgba(255, 140, 0, 0.08);
+  border-color: rgba(255, 140, 0, 0.4);
+  color: var(--vb-orange-dark);
+}
+
+.category-filter-pill .icon {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 768px) {
+  .pp-listing-container {
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 1rem;
+    padding-bottom: 6rem;
+  }
+
+  .pp-listing-hero-title {
+    font-size: 1.45rem;
+  }
+
+  .pp-listing-hero-desc {
+    font-size: 0.82rem;
+  }
+
+  .category-filter-pill {
+    padding: 6px 12px;
+    font-size: 0.74rem;
+  }
+
+  .category-filter-pill .icon {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pp-listing-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
