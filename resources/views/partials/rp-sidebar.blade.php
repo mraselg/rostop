@@ -22,18 +22,8 @@
         </div>
     </div>
 
-    <!-- Quick Search Pill -->
-    <div class="rp-search-wrap">
-        <button type="button" class="rp-search-btn rp-search-trigger" title="Search services, cards, games (Ctrl+K)">
-            <span class="rp-search-left">
-                <i data-lucide="search" class="icon rp-search-icon"></i>
-                <span class="rp-search-label">{{ __('ui.search') }}</span>
-            </span>
-            <kbd class="rp-search-kbd">Ctrl+K</kbd>
-        </button>
-    </div>
-
     <!-- Scrollable Navigation Area -->
+    {{-- Quick Search pill removed per UX revamp: search lives in header icon + Ctrl+K --}}
     <div class="rp-scroll-area">
 
         <!-- Navigation Group: RosTop Services -->
@@ -166,19 +156,8 @@
 
     </div>
 
-    <!-- Bottom Footer Area -->
+    <!-- Bottom Footer Area (theme pill only — Support/Track links now live in the scroll area above) -->
     <div class="rp-footer-area">
-        <div class="rp-footer-links">
-            <a href="{{ route('support') }}" class="rp-footer-btn" title="24/7 Live Support">
-                <i data-lucide="life-buoy" class="icon"></i>
-                <span>{{ __('ui.nav_support') }}</span>
-            </a>
-            <a href="{{ route('track.order') }}" class="rp-footer-btn" title="Track Live Order">
-                <i data-lucide="map-pin" class="icon"></i>
-                <span>{{ __('ui.nav_track_order') }}</span>
-            </a>
-        </div>
-
         <!-- Light | Dark Segmented Pill (Photo Exact) -->
         <div class="rp-theme-pill" role="radiogroup" aria-label="Theme mode switcher">
             <button type="button" class="rp-theme-opt rp-opt-light" data-theme-val="light" role="radio" aria-checked="false" title="Light Mode">
