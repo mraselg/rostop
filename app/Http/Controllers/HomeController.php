@@ -117,4 +117,12 @@ class HomeController extends Controller
     {
         return view('pages.refund_policy');
     }
+
+    /**
+     * Show Government Verification & Trust Page
+     */
+    public function governmentVerification(): View
+    {
+        return view('pages.government_verification');
+    }
 }

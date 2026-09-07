@@ -32,6 +32,9 @@ Route::redirect('/privacy-policy', '/privacy');
 Route::get('/refund-policy', [HomeController::class, 'refundPolicy'])->name('refund.policy');
 Route::redirect('/refunds', '/refund-policy');
 Route::redirect('/cancellation-policy', '/refund-policy');
+Route::get('/government-verification', [HomeController::class, 'governmentVerification'])->name('government.verification');
+Route::redirect('/gov-verification', '/government-verification');
+Route::redirect('/verification', '/government-verification');
 
 // 2. Game Top-Up Directory & Detail
 Route::get('/game-topup', [ProductController::class, 'gameTopupIndex'])->name('game.topup');
@@ -149,6 +152,7 @@ Route::prefix('{locale}')
         Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
         Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
         Route::get('/refund-policy', [HomeController::class, 'refundPolicy'])->name('refund.policy');
+        Route::get('/government-verification', [HomeController::class, 'governmentVerification'])->name('government.verification');
     });
 
 // 11. XML Sitemap with hreflang alternates for SEO Indexing
@@ -178,6 +182,7 @@ Route::get('/sitemap.xml', function () {
         ['path' => 'terms', 'priority' => '0.6', 'changefreq' => 'monthly'],
         ['path' => 'privacy', 'priority' => '0.6', 'changefreq' => 'monthly'],
         ['path' => 'refund-policy', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['path' => 'government-verification', 'priority' => '0.6', 'changefreq' => 'monthly'],
     ];
 
     foreach ($staticUrls as $u) {

@@ -6107,3 +6107,404 @@ body.rp-rail-pinned .rp-rail {
   }
 }
 
+/* =====================================================
+   RosTop Government Verification & Trust Page
+   ===================================================== */
+
+/* Trust Banner */
+.gov-trust-banner {
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.06) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 1.5rem;
+}
+
+.gov-trust-banner-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.gov-trust-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+}
+
+.gov-trust-icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.gov-trust-text strong {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.gov-trust-text p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Certificate Card */
+.gov-cert-card {
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg, #fff);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.gov-cert-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="dark"] .gov-cert-card {
+  background: var(--card-bg, #111);
+}
+
+[data-theme="dark"] .gov-cert-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Certificate Header */
+.gov-cert-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+
+.gov-cert-badge {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gov-cert-badge .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.gov-cert-badge-tin {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.06));
+  color: #10b981;
+}
+
+.gov-cert-badge-tax {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.06));
+  color: #3b82f6;
+}
+
+.gov-cert-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-main);
+  margin: 0 0 0.15rem 0;
+  line-height: 1.3;
+}
+
+.gov-cert-issuer {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.gov-cert-status {
+  margin-left: auto;
+}
+
+.gov-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gov-status-pill .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.gov-status-active {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="dark"] .gov-status-active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+/* Certificate Body */
+.gov-cert-body {
+  padding: 1.5rem;
+}
+
+.gov-cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 576px) {
+  .gov-cert-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gov-cert-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--bg-subtle, rgba(0, 0, 0, 0.02));
+  border: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+
+[data-theme="dark"] .gov-cert-field {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.gov-field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+.gov-field-label .icon {
+  width: 13px;
+  height: 13px;
+  color: var(--primary);
+}
+
+.gov-field-value {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-weight: 500;
+  line-height: 1.45;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.gov-field-masked {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  letter-spacing: 0.06em;
+}
+
+.gov-mask-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  font-weight: 600;
+  font-family: var(--font-body);
+  letter-spacing: 0;
+}
+
+.gov-mask-badge .icon {
+  width: 11px;
+  height: 11px;
+}
+
+[data-theme="dark"] .gov-mask-badge {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+/* Certificate Footer */
+.gov-cert-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-subtle, rgba(0, 0, 0, 0.01));
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.gov-cert-footer .icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .gov-cert-footer {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Why Trust RosTop Section */
+.gov-why-trust {
+  margin-bottom: 2rem;
+}
+
+.gov-why-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+}
+
+.gov-why-title .icon {
+  width: 22px;
+  height: 22px;
+  color: var(--primary);
+}
+
+.gov-why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .gov-why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gov-why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.15rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg, #fff);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.gov-why-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .gov-why-item {
+  background: var(--card-bg, #111);
+}
+
+[data-theme="dark"] .gov-why-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gov-why-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gov-why-icon .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.gov-why-item strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.gov-why-item p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile responsive for cert header */
+@media (max-width: 576px) {
+  .gov-cert-header {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .gov-cert-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .gov-cert-badge .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .gov-cert-title {
+    font-size: 0.95rem;
+  }
+
+  .gov-cert-status {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .gov-cert-body {
+    padding: 1rem;
+  }
+
+  .gov-cert-footer {
+    padding: 0.85rem 1rem;
+  }
+
+  .gov-trust-banner {
+    padding: 1.15rem;
+  }
+
+  .gov-trust-banner-inner {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

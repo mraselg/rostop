@@ -518,6 +518,7 @@
                         <li><a href="{{ route('terms') }}" class="footer-link">Terms of Service</a></li>
                         <li><a href="{{ route('privacy') }}" class="footer-link">Privacy Policy</a></li>
                         <li><a href="{{ route('refund.policy') }}" class="footer-link">Refund & Cancellation Policy</a></li>
+                        <li><a href="{{ route('government.verification') }}" class="footer-link">Government Verification</a></li>
                     </ul>
                 </div>
 
