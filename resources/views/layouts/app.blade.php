@@ -124,14 +124,26 @@
         <div class="container">
             <div class="navbar-wrapper">
 
-                <!-- Brand Logo & Country/Currency Switcher -->
+                <!-- Brand: desktop shows the static logo + title at all times;
+                     mobile keeps the pop-animated icon button (tap → drawer) beside the fixed title. -->
                 <div class="brand-group">
-                    <a href="{{ route('home') }}" class="brand-logo" title="RosTop Home">
+                    <a href="{{ route('home') }}" class="brand-logo brand-logo-desktop" id="desktop-brand-logo" title="RosTop Home">
                         <div class="brand-icon">
                             <i data-lucide="zap" class="icon"></i>
                         </div>
                         <span class="brand-title">Ros<span style="color: var(--primary);">Top</span></span>
                     </a>
+                    <div class="brand-menu-slot" id="brand-menu-slot">
+                        <button type="button" class="brand-icon bms-iconbox" id="brand-menu-btn" aria-label="Open Navigation Menu" title="Menu">
+                            <span class="bms-flip">
+                                <span class="bms-face bms-front"><i data-lucide="zap" class="icon"></i></span>
+                                <span class="bms-face bms-back"><i data-lucide="menu" class="icon"></i></span>
+                            </span>
+                        </button>
+                        <a href="{{ route('home') }}" class="brand-logo bms-title" title="RosTop Home">
+                            <span class="brand-title">Ros<span style="color: var(--primary);">Top</span></span>
+                        </a>
+                    </div>
 
                     <!-- Locale / Country / Currency Pill (mock: [flag] EN-BD / BDT) -->
                     <button type="button" class="lc-pill" id="currency-selector-btn" aria-label="Language and Currency Settings" title="Language & Currency Settings">
@@ -195,10 +207,7 @@
                          they already live inside the sidebar (Light|Dark pill + bottom user card).
                          Header keeps only primary actions for a clean, uncrowded top bar. --}}
 
-                    <!-- Mobile Hamburger Menu Button -->
-                    <button type="button" class="mobile-menu-btn" id="mobile-menu-open-btn" aria-label="Open Navigation Menu" title="Open Navigation Menu">
-                        <i data-lucide="menu" class="icon"></i>
-                    </button>
+                    {{-- Mobile hamburger moved into #brand-menu-slot (left, logo position) per UX revamp --}}
                 </div>
 
             </div>
@@ -505,10 +514,10 @@
                     <div class="footer-col-title">Help & Trust</div>
                     <ul class="footer-links">
                         <li><a href="{{ route('track.order') }}" class="footer-link">Live Order Tracker</a></li>
-                        <li><a href="{{ route('giftcards.sell') }}" class="footer-link">Exchange Rates Policy</a></li>
-                        <li><a href="https://wa.me/8801700000000" class="footer-link">24/7 WhatsApp Support</a></li>
-                        <li><a href="#faq" class="footer-link">Frequently Asked Questions</a></li>
-                        <li><a href="{{ route('admin.dashboard') }}" class="footer-link">Admin Portal Demo</a></li>
+                        <li><a href="{{ route('support') }}" class="footer-link">24/7 Customer Support</a></li>
+                        <li><a href="{{ route('terms') }}" class="footer-link">Terms of Service</a></li>
+                        <li><a href="{{ route('privacy') }}" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="{{ route('refund.policy') }}" class="footer-link">Refund & Cancellation Policy</a></li>
                     </ul>
                 </div>
 
@@ -518,6 +527,13 @@
             <div class="footer-bottom">
                 <div>
                     &copy; {{ date('Y') }} <strong>RosTop</strong> (rostop.com). All rights reserved. Direct Platform &bull; No P2P Risk.
+                    <div class="footer-legal-links mt-1">
+                        <a href="{{ route('terms') }}">Terms of Service</a>
+                        <span>&bull;</span>
+                        <a href="{{ route('privacy') }}">Privacy Policy</a>
+                        <span>&bull;</span>
+                        <a href="{{ route('refund.policy') }}">Refund Policy</a>
+                    </div>
                 </div>
                 <div class="footer-trust-badges">
                     <span><i data-lucide="lock" class="icon"></i> 256-Bit SSL</span>

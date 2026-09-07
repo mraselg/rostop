@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Sell Gift Cards & Prepaid Vouchers for bKash / Nagad | RosTop')
 @section('meta_description', 'Direct exchange platform in Bangladesh on rostop.com. Turn Paysafecard, Transcash, Neosurf, Apple & Google Play gift cards into instant bKash, Nagad or USDT at 84-90% fixed rates.')
@@ -133,6 +133,13 @@
             <div style="text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-dim); display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
                 <i data-lucide="lock" class="icon" style="width:12px;height:12px;"></i>
                 Code verification takes approx. 15-45 minutes. Money is sent directly to your account.
+            </div>
+
+            <div style="text-align: center; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-dim); line-height: 1.5;">
+                By submitting your voucher, you warrant lawful ownership and agree to our
+                <a href="{{ route('terms') }}" target="_blank" style="color: var(--primary); text-decoration: underline;">Terms of Service</a>,
+                <a href="{{ route('privacy') }}" target="_blank" style="color: var(--primary); text-decoration: underline;">Privacy Policy</a>, and
+                <a href="{{ route('refund.policy') }}" target="_blank" style="color: var(--primary); text-decoration: underline;">Exchange &amp; Rejection Policy</a>.
             </div>
 
         </form>

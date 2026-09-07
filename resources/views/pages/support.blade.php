@@ -185,6 +185,52 @@
             </div>
         </div>
 
+        <!-- Official Policies & Customer Protection Block -->
+        <div class="support-section-block mt-4">
+            <div class="support-section-heading">
+                <i data-lucide="shield-check" class="icon"></i>
+                <span>নীতিমালা ও গ্রাহক সুরক্ষা (Legal &amp; Policies)</span>
+            </div>
+            <div class="support-topics-list">
+                <a href="{{ route('terms') }}" class="support-topic-item">
+                    <div class="support-topic-left">
+                        <div class="support-topic-icon" style="background: rgba(31, 163, 126, 0.12); color: var(--primary);">
+                            <i data-lucide="file-text" class="icon"></i>
+                        </div>
+                        <div>
+                            <div class="support-topic-title">ব্যবহারের শর্তাবলী (Terms of Service)</div>
+                            <div class="support-topic-desc">প্ল্যাটফর্ম নিয়মাবলী, কাউন্টারপার্টি মডেল ও আইনগত শর্ত</div>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="icon chevron"></i>
+                </a>
+                <a href="{{ route('privacy') }}" class="support-topic-item">
+                    <div class="support-topic-left">
+                        <div class="support-topic-icon" style="background: rgba(6, 182, 212, 0.12); color: #0891B2;">
+                            <i data-lucide="lock" class="icon"></i>
+                        </div>
+                        <div>
+                            <div class="support-topic-title">গোপনীয়তা নীতি (Privacy Policy)</div>
+                            <div class="support-topic-desc">তথ্য সুরক্ষা, এনক্রিপশন ও তথ্য গোপনীয়তা গ্যারান্টি</div>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="icon chevron"></i>
+                </a>
+                <a href="{{ route('refund.policy') }}" class="support-topic-item">
+                    <div class="support-topic-left">
+                        <div class="support-topic-icon" style="background: rgba(245, 158, 11, 0.12); color: #D97706;">
+                            <i data-lucide="rotate-ccw" class="icon"></i>
+                        </div>
+                        <div>
+                            <div class="support-topic-title">রিফান্ড ও ক্যান্সেলেশন নীতি (Refund Policy)</div>
+                            <div class="support-topic-desc">টপ-আপ ফেইলিওর রিফান্ড, ওয়ারেন্টি ও বিকাশ রিভার্সাল টাইমলাইন</div>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="icon chevron"></i>
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 

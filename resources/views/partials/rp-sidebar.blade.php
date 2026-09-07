@@ -5,10 +5,23 @@
 
     <!-- Slim Brand & Action Bar (profile moved to very bottom) -->
     <div class="rp-brand-bar">
-        <div class="rp-brand-left">
-            <span class="rp-brand-mark"><i data-lucide="zap" class="icon"></i></span>
-            <span class="rp-brand-word">Ros<span style="color: var(--primary);">Top</span></span>
-        </div>
+        @if($isRail)
+            {{-- Desktop rail: brand mark toggles sidebar. Collapsed = menu icon;
+                 expanded (hover/pinned) = pops to zap logo + title slides in. --}}
+            <div class="rp-brand-left">
+                <button type="button" class="rp-brand-mark rp-brand-toggle" aria-label="Toggle Sidebar" title="Menu">
+                    <span class="rp-bm-face rp-bm-zap"><i data-lucide="zap" class="icon"></i></span>
+                    <span class="rp-bm-face rp-bm-menu"><i data-lucide="menu" class="icon"></i></span>
+                </button>
+                <span class="rp-brand-word">Ros<span style="color: var(--primary);">Top</span></span>
+            </div>
+        @else
+            {{-- Mobile drawer (always expanded): logo is a Home link --}}
+            <a href="{{ route('home') }}" class="rp-brand-left rp-brand-home" title="RosTop Home">
+                <span class="rp-brand-mark"><i data-lucide="zap" class="icon"></i></span>
+                <span class="rp-brand-word">Ros<span style="color: var(--primary);">Top</span></span>
+            </a>
+        @endif
         <div class="rp-profile-actions">
             @if($isRail)
                 <button type="button" class="rp-icon-btn rp-pin-btn" title="Pin / Unpin Sidebar" aria-label="Pin Sidebar">
@@ -138,6 +151,31 @@
             </ul>
         </div>
 
+        <!-- Navigation Group: Legal & Policies -->
+        <div class="rp-nav-group">
+            <div class="rp-group-title">Legal &amp; Policies</div>
+            <ul class="rp-nav-list">
+                <li>
+                    <a href="{{ route('terms') }}" class="rp-nav-item {{ request()->routeIs('terms*') || request()->routeIs('l.terms*') ? 'active' : '' }}" title="Terms of Service">
+                        <span class="rp-item-icon"><i data-lucide="file-text" class="icon"></i></span>
+                        <span class="rp-item-label">Terms of Service</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('privacy') }}" class="rp-nav-item {{ request()->routeIs('privacy*') || request()->routeIs('l.privacy*') ? 'active' : '' }}" title="Privacy Policy">
+                        <span class="rp-item-icon"><i data-lucide="lock" class="icon"></i></span>
+                        <span class="rp-item-label">Privacy Policy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('refund.policy') }}" class="rp-nav-item {{ request()->routeIs('refund*') || request()->routeIs('l.refund*') ? 'active' : '' }}" title="Refund Policy">
+                        <span class="rp-item-icon"><i data-lucide="rotate-ccw" class="icon"></i></span>
+                        <span class="rp-item-label">Refund Policy</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
         <!-- Navigation Group: Preferences & Region -->
         <div class="rp-nav-group">
             <div class="rp-group-title">Preferences</div>
@@ -175,41 +213,42 @@
     <!-- Profile / Login / Logout — pinned to bottom -->
     <div class="rp-user-card">
         @auth
-            <div class="rp-profile-user">
+            <div class="rp-profile-user rp-profile-compact">
                 <div class="rp-avatar" title="{{ auth()->user()->name }}">
                     <span>{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
                     <span class="rp-avatar-badge" title="Verified Member"><i data-lucide="check" class="icon"></i></span>
                 </div>
                 <div class="rp-user-info">
-                    <div class="rp-user-meta">
-                        <span class="rp-greeting rp-greeting-text">Welcome back</span>
+                    <div class="rp-uc-top">
+                        <div class="rp-uc-id">
+                            <div class="rp-uc-name">{{ auth()->user()->name }}</div>
+                            <div class="rp-uc-handle">{{ '@' . \Illuminate\Support\Str::before(auth()->user()->email, '@') }}</div>
+                        </div>
+                        <div class="rp-uc-actions">
+                            {{-- History/Orders icon intentionally removed: will return with the profile page --}}
+                            @if(auth()->user()->is_admin)
+                                <a href="{{ route('admin.dashboard') }}" class="rp-uc-icon-btn" title="Admin Panel" aria-label="Admin Panel">
+                                    <i data-lucide="settings" class="icon"></i>
+                                </a>
+                            @endif
+                            <form action="{{ route('logout') }}" method="POST" class="m-0 d-inline-block">
+                                @csrf
+                                <button type="submit" class="rp-uc-icon-btn rp-uc-logout" title="{{ __('ui.logout') }}" aria-label="{{ __('ui.logout') }}">
+                                    <i data-lucide="log-out" class="icon"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="rp-uc-balance">
+                        <span class="rp-balance-chip" title="Wallet Balance">
+                            <i data-lucide="wallet" class="icon"></i>
+                            <span class="rp-balance-val">৳ {{ number_format(auth()->user()->balance ?? 0, 2) }}</span>
+                        </span>
                         @if(auth()->user()->is_admin)
                             <span class="rp-badge-admin">Admin</span>
                         @else
                             <span class="rp-badge-verified">Verified</span>
                         @endif
-                    </div>
-                    <div class="rp-user-name">{{ auth()->user()->name }}</div>
-                    <div class="rp-user-balance-bar">
-                        <span class="rp-balance-chip" title="Wallet Balance">
-                            <i data-lucide="wallet" class="icon"></i>
-                            <span class="rp-balance-val">৳ {{ number_format(auth()->user()->balance ?? 0, 2) }}</span>
-                        </span>
-                    </div>
-                    <div class="rp-user-actions">
-                        @if(auth()->user()->is_admin)
-                            <a href="{{ route('admin.dashboard') }}" class="rp-btn-user-sub" title="Admin Portal">
-                                <i data-lucide="shield" class="icon"></i>
-                                <span>Admin</span>
-                            </a>
-                        @endif
-                        <form action="{{ route('logout') }}" method="POST" class="m-0 d-inline-block">
-                            @csrf
-                            <button type="submit" class="rp-btn-logout" title="{{ __('ui.logout') }}">
-                                <i data-lucide="log-out" class="icon"></i>
-                                <span>{{ __('ui.logout') }}</span>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>

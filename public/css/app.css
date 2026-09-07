@@ -5534,3 +5534,576 @@ body.rp-rail-pinned .rp-rail {
   .pp-notice-alert { font-size: 0.72rem !important; padding: 0.55rem 0.6rem !important; }
   .pp-input-group { margin-bottom: 0.55rem !important; }
 }
+
+/* ==========================================================================
+   Brand Menu Slot — UX revamp (v5, event-driven fast pop)
+   ========================================================================== */
+.brand-menu-slot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+/* Header brand responsive switching (Mobile vs Desktop) */
+.brand-group .brand-logo-desktop {
+  display: none !important;
+}
+
+.brand-group .brand-menu-slot {
+  display: inline-flex !important;
+}
+
+@media (min-width: 1024px) {
+  .brand-group .brand-logo-desktop {
+    display: inline-flex !important;
+  }
+  .brand-group .brand-menu-slot {
+    display: none !important;
+  }
+}
+
+/* Icon box = brand gradient box as a button (pop stage) */
+.bms-iconbox {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.bms-iconbox:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px var(--primary-glow);
+}
+
+/* Both faces stacked on the exact same spot & size */
+.bms-flip {
+  position: absolute;
+  inset: 0;
+}
+
+.bms-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Resting state: logo visible at full size, menu shrunk & hidden */
+.bms-front {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition: opacity 0.12s ease-in, transform 0.12s ease-in;
+}
+
+.bms-back {
+  opacity: 0;
+  transform: scale(0.25) rotate(-10deg);
+  transition: opacity 0.12s ease-in, transform 0.12s ease-in;
+}
+
+/* POP IN (fast + springy overshoot): menu appears, logo darts out */
+.bms-iconbox.flipped .bms-front {
+  opacity: 0;
+  transform: scale(0.25) rotate(10deg);
+  transition: opacity 0.1s ease-in, transform 0.1s ease-in;
+}
+
+.bms-iconbox.flipped .bms-back {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition:
+    opacity 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s,
+    transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s;
+}
+
+/* POP BACK: menu darts out, logo springs back in */
+.bms-iconbox:not(.flipped) .bms-front {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition:
+    opacity 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) 0.04s,
+    transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1) 0.04s;
+}
+
+/* Fixed title — plain link, never swaps */
+.bms-title { text-decoration: none; }
+
+.bms-title:hover .brand-title { opacity: 0.9; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bms-iconbox { transition: none; }
+  .bms-face { transition: none !important; }
+}
+
+/* ==========================================================================
+   Sidebar Compact Profile Card (logged-in, mock-style) — UX revamp
+   ========================================================================== */
+.rp-uc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.rp-uc-id { min-width: 0; flex: 1; }
+
+.rp-uc-name {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--accent-amber);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rp-uc-handle {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rp-uc-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.rp-uc-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.16s ease;
+  padding: 0;
+}
+
+.rp-uc-icon-btn .icon { width: 14px; height: 14px; }
+
+.rp-uc-icon-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+.rp-uc-logout:hover {
+  border-color: var(--danger, #EF4444);
+  color: var(--danger, #EF4444);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.rp-uc-balance {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive refinement — larger touch targets & breathing room in the mobile drawer */
+.mobile-drawer .rp-user-card { padding: 1rem 0.85rem 0.85rem; }
+
+.mobile-drawer .rp-avatar { width: 44px; height: 44px; font-size: 1.05rem; }
+
+.mobile-drawer .rp-uc-name { font-size: 1rem; }
+
+.mobile-drawer .rp-uc-handle { font-size: 0.78rem; }
+
+.mobile-drawer .rp-uc-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.mobile-drawer .rp-uc-icon-btn .icon { width: 16px; height: 16px; }
+
+.mobile-drawer .rp-btn-signin,
+.mobile-drawer .rp-btn-signup {
+  height: 40px;
+  font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   Rail Brand Toggle (desktop sidebar OFF/ON states)
+   Collapsed rail (OFF): only the menu icon shows (wordmark animated away).
+   Expanded/pinned (ON): menu icon pops out, zap logo springs in and the
+   "RosTop" wordmark slides in beside it. Click drives the pin mechanism.
+   ========================================================================== */
+.rp-brand-toggle {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.rp-bm-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.12s ease-in, transform 0.12s ease-in;
+}
+
+/* Default (expanded): zap logo visible, menu hidden */
+.rp-bm-zap { opacity: 1; transform: scale(1) rotate(0deg); }
+
+.rp-bm-menu { opacity: 0; transform: scale(0.25) rotate(-10deg); }
+
+/* Wordmark: animated show/hide (slides + fades), smooth max-width collapse */
+.rp-brand-word {
+  max-width: 120px;
+  opacity: 1;
+  transform: translateX(0);
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.18s ease 0.05s,
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.03s;
+}
+
+.rp-brand-home { text-decoration: none; }
+
+@media (min-width: 1024px) {
+  /* Collapsed rail (sidebar OFF): menu icon only, wordmark animated away */
+  .rp-rail:not(:hover):not(.rp-pinned) .rp-bm-zap {
+    opacity: 0;
+    transform: scale(0.25) rotate(10deg);
+  }
+
+  .rp-rail:not(:hover):not(.rp-pinned) .rp-bm-menu {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    transition:
+      opacity 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) 0.04s,
+      transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1) 0.04s;
+  }
+
+  .rp-rail:not(:hover):not(.rp-pinned) .rp-brand-word {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition-delay: 0s;
+  }
+
+  .rp-rail:not(:hover):not(.rp-pinned) .rp-brand-bar {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Expanded (hover or pinned ON): zap logo springs back in */
+  .rp-rail:hover .rp-bm-zap,
+  .rp-rail.rp-pinned .rp-bm-zap {
+    transition:
+      opacity 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s,
+      transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp-bm-face { transition: none !important; }
+  .rp-brand-word { transition: none !important; }
+}
+
+/* ==========================================================================
+   RosTop Legal & Policy Pages (Terms, Privacy, Refund Policy)
+   ========================================================================== */
+
+.policy-page-container {
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+.policy-header-wrap {
+  position: relative;
+}
+
+.policy-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.policy-back-btn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateX(-2px);
+}
+
+/* 3-Policy Tab Switcher */
+.policy-tab-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  padding: 0.35rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.policy-tab-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.policy-tab-item i {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.2;
+}
+
+.policy-tab-item:hover {
+  color: var(--text-main);
+  background: rgba(31, 163, 126, 0.08);
+}
+
+.policy-tab-item.active {
+  background: var(--primary);
+  color: var(--primary-fg, #FFFFFF);
+  box-shadow: 0 2px 10px rgba(31, 163, 126, 0.35);
+}
+
+[data-theme="light"] .policy-tab-item.active {
+  color: #FFFFFF;
+}
+
+/* Quick Summary / Key Takeaways Box */
+.policy-quick-box {
+  background: rgba(31, 163, 126, 0.06);
+  border: 1px solid rgba(31, 163, 126, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.policy-quick-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.65rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.policy-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.policy-quick-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.policy-quick-item i {
+  width: 16px;
+  height: 16px;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Content Clauses & Cards */
+.policy-clause-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  transition: border-color var(--transition-fast);
+}
+
+.policy-clause-card:hover {
+  border-color: rgba(31, 163, 126, 0.3);
+}
+
+.policy-clause-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.policy-clause-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(31, 163, 126, 0.12);
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.policy-clause-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  font-family: var(--font-heading);
+}
+
+.policy-clause-body {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.policy-clause-body p {
+  margin-bottom: 0.85rem;
+}
+
+.policy-clause-body p:last-child {
+  margin-bottom: 0;
+}
+
+.policy-clause-body ul, 
+.policy-clause-body ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.policy-clause-body li {
+  margin-bottom: 0.45rem;
+}
+
+.policy-clause-body strong {
+  color: var(--text-main);
+}
+
+/* Highlight / Notice Callout Box */
+.policy-callout {
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.865rem;
+  line-height: 1.55;
+}
+
+.policy-callout-info {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--text-main);
+}
+.policy-callout-info i { color: #0284C7; }
+
+.policy-callout-warning {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: var(--text-main);
+}
+.policy-callout-warning i { color: #D97706; }
+
+.policy-callout-success {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: var(--text-main);
+}
+.policy-callout-success i { color: #059669; }
+
+.policy-callout i {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Legal Footer Links */
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.775rem;
+  color: var(--text-dim);
+}
+
+.footer-legal-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-legal-links a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Support Help Box at Bottom of Policies */
+.policy-support-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 576px) {
+  .policy-tab-item {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+  }
+  .policy-clause-card {
+    padding: 1.15rem;
+  }
+}
+

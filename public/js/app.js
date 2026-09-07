@@ -71,6 +71,7 @@
     initLiveHistoryModal();
     initLiveEyebrowTicker();
     initMobileDrawer();
+    initBrandMenuSlot();
     initRpSidebar();
     initSupportPage();
     initGameTopupFlow();
@@ -981,6 +982,62 @@
     }
   }
 
+  // --- Brand Menu Slot (event-driven fast pop: logo ⇄ sidebar, one box one size) ---
+  // No continuous animation. The menu icon POPS in on hover (desktop) or tap
+  // (mobile), holds ~1.6s, then pops back to the logo. Icon click: mobile =
+  // open drawer, desktop = pin/expand rail. Title click = Home.
+  function initBrandMenuSlot() {
+    const slot = document.getElementById('brand-menu-slot');
+    const menuBtn = document.getElementById('brand-menu-btn');
+    if (!slot || !menuBtn) return;
+
+    const overlay = document.getElementById('mobile-drawer-overlay');
+    const mobileQuery = window.matchMedia('(max-width: 1023.98px)');
+
+    const HOLD_MS = 1600; // menu face lingers 1-2s as requested
+
+    let holdTimeout = null;
+    let hovering = false;
+
+    const showMenu = (on) => menuBtn.classList.toggle('flipped', on);
+    const drawerOpen = () => overlay && overlay.classList.contains('active');
+
+    // After 1-2s idle, pop back to the logo
+    function scheduleFlipBack() {
+      if (holdTimeout) clearTimeout(holdTimeout);
+      holdTimeout = setTimeout(() => {
+        if (!hovering && !drawerOpen()) showMenu(false);
+      }, HOLD_MS);
+    }
+
+    menuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      showMenu(true);
+      if (mobileQuery.matches) {
+        if (overlay && !drawerOpen()) {
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      } else {
+        // Desktop: toggle rail pin through its own button (localStorage + icon state stay in sync)
+        const railPinBtn = document.querySelector('#rp-desktop-rail .rp-pin-btn');
+        if (railPinBtn) railPinBtn.click();
+        scheduleFlipBack();
+      }
+    });
+
+    // Desktop hover: pop to menu instantly; keep it 1-2s after the mouse leaves
+    slot.addEventListener('mouseenter', () => { hovering = true; showMenu(true); });
+    slot.addEventListener('mouseleave', () => { hovering = false; scheduleFlipBack(); });
+
+    // Mobile: when the drawer closes, hold the menu face 1-2s, then back to logo
+    if (overlay) {
+      new MutationObserver(() => {
+        if (!drawerOpen() && !hovering && mobileQuery.matches) scheduleFlipBack();
+      }).observe(overlay, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+
   // --- Dedicated Support Page & Live Chat Modal ---
   function initSupportPage() {
     const chatModal = document.getElementById('support-chat-modal');
@@ -1130,6 +1187,15 @@
         localStorage.setItem('rostop_rail_pinned', isPinned ? 'true' : 'false');
       });
     });
+
+    // Brand-mark toggle in the rail header (menu icon when collapsed) drives the same pin mechanism
+    const brandToggle = document.querySelector('.rp-brand-toggle');
+    if (brandToggle) {
+      brandToggle.addEventListener('click', () => {
+        const railPinBtn = document.querySelector('#rp-desktop-rail .rp-pin-btn');
+        if (railPinBtn) railPinBtn.click();
+      });
+    }
 
     // 3. Accordions inside Sidebar
     accordionBtns.forEach(btn => {

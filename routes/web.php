@@ -24,6 +24,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/support', [HomeController::class, 'support'])->name('support');
 
+// 1B. Legal, Compliance & Customer Protection Policies
+Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
+Route::redirect('/terms-of-service', '/terms');
+Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
+Route::redirect('/privacy-policy', '/privacy');
+Route::get('/refund-policy', [HomeController::class, 'refundPolicy'])->name('refund.policy');
+Route::redirect('/refunds', '/refund-policy');
+Route::redirect('/cancellation-policy', '/refund-policy');
+
 // 2. Game Top-Up Directory & Detail
 Route::get('/game-topup', [ProductController::class, 'gameTopupIndex'])->name('game.topup');
 Route::get('/game-topup/{slug}', [ProductController::class, 'show'])->name('game.show');
@@ -137,6 +146,9 @@ Route::prefix('{locale}')
         Route::get('/digital-products/{slug}', [ProductController::class, 'show'])->name('digital.products.show');
         Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/track-order', [OrderController::class, 'trackOrder'])->name('track.order');
+        Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
+        Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
+        Route::get('/refund-policy', [HomeController::class, 'refundPolicy'])->name('refund.policy');
     });
 
 // 11. XML Sitemap with hreflang alternates for SEO Indexing
@@ -163,6 +175,9 @@ Route::get('/sitemap.xml', function () {
         ['path' => 'subscriptions', 'priority' => '0.8', 'changefreq' => 'weekly'],
         ['path' => 'digital-products', 'priority' => '0.8', 'changefreq' => 'weekly'],
         ['path' => 'track-order', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['path' => 'terms', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['path' => 'privacy', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['path' => 'refund-policy', 'priority' => '0.6', 'changefreq' => 'monthly'],
     ];
 
     foreach ($staticUrls as $u) {

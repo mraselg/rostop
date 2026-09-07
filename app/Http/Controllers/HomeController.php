@@ -93,4 +93,28 @@ class HomeController extends Controller
     {
         return view('pages.support');
     }
+
+    /**
+     * Show Terms of Service Page
+     */
+    public function terms(): View
+    {
+        return view('pages.terms');
+    }
+
+    /**
+     * Show Privacy Policy Page
+     */
+    public function privacy(): View
+    {
+        return view('pages.privacy');
+    }
+
+    /**
+     * Show Refund & Cancellation Policy Page
+     */
+    public function refundPolicy(): View
+    {
+        return view('pages.refund_policy');
+    }
 }

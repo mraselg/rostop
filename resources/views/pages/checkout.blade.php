@@ -161,6 +161,13 @@
                         Confirm Payment & Submit Order (৳ {{ number_format($package->price_bdt) }})
                     </button>
 
+                    <div style="font-size: 0.775rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem; line-height: 1.5;">
+                        By confirming this order, you acknowledge and agree to RosTop's
+                        <a href="{{ route('terms') }}" target="_blank" style="color: var(--primary); text-decoration: underline;">Terms of Service</a>,
+                        <a href="{{ route('privacy') }}" target="_blank" style="color: var(--primary); text-decoration: underline;">Privacy Policy</a>, and
+                        <a href="{{ route('refund.policy') }}" target="_blank" style="color: var(--primary); text-decoration: underline;">Refund Policy</a>.
+                    </div>
+
                 </div>
 
             </div>
